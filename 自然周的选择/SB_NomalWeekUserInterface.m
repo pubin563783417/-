@@ -33,6 +33,8 @@
     
     NSInteger _recordWeek;
     NSInteger _recordYear;
+    
+    BOOL _firstLock;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -125,7 +127,11 @@
     }
 }
 - (void)show{
-     [self selectYear:_selectYear week:_selectWeek animated:NO];
+    if (!_firstLock) {
+        _firstLock = YES;
+        [self selectYear:0 week:0 animated:NO];
+    }
+    
     _blackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
     _blackView.backgroundColor = [UIColor blackColor];
     //    _blackView.userInteractionEnabled = NO;
@@ -145,7 +151,9 @@
     self.alpha = 1.0f;
     [UIView commitAnimations];
     
-   
+    [self reloadData];
+   [self selectYear:_selectYear week:_selectWeek animated:NO];
+//    [self setNeedsDisplay];
 }
 #pragma mark  - picker  delegate 
 
@@ -245,6 +253,7 @@
 - (void)reloadData{
     [_pickView reloadAllComponents];
 }
+
 - (void)selectYear:(NSInteger)year week:(NSInteger)week animated:(BOOL)animated{
     [_pickView selectRow:year inComponent:0 animated:animated];
     [_pickView selectRow:week inComponent:1 animated:animated];

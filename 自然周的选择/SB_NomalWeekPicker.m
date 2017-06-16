@@ -26,8 +26,9 @@
 #pragma  mark -  private func 
 - (void)showWithYear:(NSInteger)year week:(NSInteger)week{
     [_picker setYear:year-SB_Base_Year week:week-1];
-    [_picker show];
 //    [_picker reloadData];
+    [_picker show];
+    
 }
 - (void)close{
     [_picker close];

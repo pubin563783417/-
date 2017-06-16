@@ -12,42 +12,33 @@
 @implementation SB_NomalWeekPublic
 + (NSInteger)sb_fetchCurrentWeek{
     NSDate*date = [NSDate date];
-    
     NSCalendar*calendar = [NSCalendar currentCalendar];
     
     [calendar setFirstWeekday:2];
+    [calendar setMinimumDaysInFirstWeek:7];
+    NSLog(@"%ld",calendar.minimumDaysInFirstWeek);
     NSDateComponents*comps;
     // 年月日获得
     comps =[calendar components:(NSWeekCalendarUnit | NSCalendarUnitYear | NSCalendarUnitWeekdayOrdinal)
                        fromDate:date];
     NSInteger week = [comps week]; // 今年的第几周
-    if (![self firstDayInYear:comps.year]) {
-        week --;
-    }
-    if (week == 0) {
-        NSArray *datas = [[SB_NomalWeekDataSource shareManager] dataSourceForArray];
-        NSArray *weeks = [datas objectAtIndex:comps.year-2016-1];
-        week = weeks.count;
-    }
+    
     return week;
 }
 + (NSInteger)sb_fetchCurrentYear{
-    
-    NSDate*date = [NSDate date];
-    
+    NSDate *date = [NSDate date];
     NSCalendar*calendar = [NSCalendar currentCalendar];
     
     [calendar setFirstWeekday:2];
+    [calendar setMinimumDaysInFirstWeek:7];
     NSDateComponents*comps;
     // 年月日获得
-    comps =[calendar components:(NSWeekCalendarUnit | NSCalendarUnitYear | NSCalendarUnitWeekdayOrdinal)
+    comps =[calendar components:(NSWeekCalendarUnit | NSCalendarUnitYear | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitMonth)
                        fromDate:date];
     NSInteger week = [comps week]; // 今年的第几周
     NSInteger year = [comps year];
-    if (![self firstDayInYear:comps.year]) {
-        week --;
-    }
-    if (week == 0) {
+    
+    if ([comps month] == 1 && week > 10) {
         year --;
     }
     return year;

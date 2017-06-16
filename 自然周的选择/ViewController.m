@@ -8,9 +8,12 @@
 
 #import "ViewController.h"
 #import "SB_NomalWeekPicker.h"
+#import "DateTools.h"
+#import "SB_NomalWeekDataSource.h"
 @interface ViewController ()
 {
     SB_NomalWeekPicker *picker;
+    
 }
 @end
 
@@ -19,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
     [self.view addGestureRecognizer:tap];
     picker = [[SB_NomalWeekPicker alloc]initConfirmBlock:^(NSInteger year, NSInteger week, NSString *weekFullFormat) {
@@ -29,7 +34,7 @@
 }
 - (void)tap{
     
-    [picker show];
+    [picker showWithAutoDate];
 }
 
 - (void)didReceiveMemoryWarning {
