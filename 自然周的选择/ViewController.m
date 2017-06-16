@@ -29,7 +29,7 @@
 }
 - (void)tap{
     
-    [picker showWithAutoDate];
+    [picker show];
 }
 
 - (void)didReceiveMemoryWarning {

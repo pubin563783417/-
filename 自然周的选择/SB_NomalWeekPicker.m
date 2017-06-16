@@ -28,6 +28,7 @@
 - (void)showWithYear:(NSInteger)year week:(NSInteger)week{
     [_picker setYear:year-SB_Base_Year week:week-1];
     [_picker show];
+//    [_picker reloadData];
 }
 - (void)close{
     [_picker close];

@@ -49,14 +49,12 @@
         self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
         [self configurationFuncControl];
         
-        _datas = [[SB_NomalWeekDataSource shareManager] dataSourceForArray];
-        
-        _pickView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, self_width, self_height/3*2)];
+        _pickView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 0, self_width-40, self_height/3*2)];
         _pickView.delegate = self;
         _pickView.dataSource = self;
         _pickView.showsSelectionIndicator = YES;
         [self addSubview:_pickView];
-        
+        _datas = [[SB_NomalWeekDataSource shareManager] dataSourceForArray];
 //        [self reloadData];
     }
     return self;
@@ -124,6 +122,7 @@
     }
 }
 - (void)show{
+     [self selectYear:_selectYear week:_selectWeek animated:NO];
     _blackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
     _blackView.backgroundColor = [UIColor blackColor];
     //    _blackView.userInteractionEnabled = NO;
@@ -143,7 +142,7 @@
     self.alpha = 1.0f;
     [UIView commitAnimations];
     
-    [self selectYear:_selectYear week:_selectWeek animated:NO];
+   
 }
 #pragma mark  - picker  delegate 
 
@@ -161,9 +160,9 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     if (component == 0) {
-        return  self_width/7*3;
+        return  self_width/14*3;
     }else
-    return self_width/2;
+    return self_width/7*3;
 }
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
     return SB_PickerRow_Height;
@@ -171,10 +170,11 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view{
     if (view == nil) {
         view = [[UIView alloc]init];
+//        view.backgroundColor = [UIColor greenColor];
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SB_PickerSecond_Width, SB_PickerRow_Height)];
         label.tag = 21;
         label.font = [UIFont systemFontOfSize:16];
-        label.textAlignment = NSTextAlignmentCenter;
+        
         label.textColor = [UIColor darkTextColor];
         [view addSubview:label];
     }
@@ -183,6 +183,7 @@
         case 0:
         {
             NSString * title = [NSString stringWithFormat:@"%ld年",row+SB_Base_Year];
+            label.textAlignment = NSTextAlignmentLeft;
             label.text = title;
             label.frame = CGRectMake(0, 0, SB_PickerSecond_Width, SB_PickerRow_Height);
         }
@@ -192,6 +193,7 @@
         {
             NSString *date = [[_datas objectAtIndex:_selectYear] objectAtIndex:row];
             NSString * title = [self outPutTitleFormatWithDate:date index:row];
+            label.textAlignment = NSTextAlignmentCenter;
             label.text = title;
             label.frame = CGRectMake(0, 0, SB_PickerSecond_Width+30, SB_PickerRow_Height);
         }
