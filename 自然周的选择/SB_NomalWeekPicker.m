@@ -9,7 +9,6 @@
 #import "SB_NomalWeekPicker.h"
 #import "SB_NomalWeekDataSource.h"
 #import "SB_NomalWeekUserInterface.h"
-#import "SB_NomalWeekPublic.h"
 
 
 @implementation SB_NomalWeekPicker

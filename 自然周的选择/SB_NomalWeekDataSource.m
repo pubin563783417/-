@@ -11,6 +11,7 @@
 @implementation SB_NomalWeekDataSource
 {
     NSDictionary *_dataSource;
+    NSMutableArray *_datas;
 }
 + (instancetype)shareManager{
     static SB_NomalWeekDataSource *data = nil;
@@ -23,19 +24,22 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"date" ofType:@"plist"];
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"sb_date" ofType:@"plist"];
         _dataSource = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
     }
     return self;
 }
 - (NSArray *)dataSourceForArray{
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i < 5; i ++) {
-        NSInteger index = i + 2016;
+    if (_datas) {
+        return _datas;
+    }
+    _datas = [NSMutableArray array];
+    for (int i = 0; i < _dataSource.count; i ++) {
+        NSInteger index = i + SB_Base_Year;
         NSString *key = [NSString stringWithFormat:@"%ld",index];
         id objc = [_dataSource objectForKey:key];
-        [array addObject:objc];
+        [_datas addObject:objc];
     }
-    return array.copy;
+    return _datas.copy;
 }
 @end

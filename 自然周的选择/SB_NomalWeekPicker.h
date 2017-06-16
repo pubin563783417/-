@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SB_NomalWeekPublic.h"
 @interface SB_NomalWeekPicker : NSObject
 - (instancetype)initConfirmBlock:(void(^)(NSInteger year,NSInteger week,NSString *weekFullFormat))confirmBlock cancleBlock:(void(^)(void))cancleBlock;
 - (void)showWithYear:(NSInteger)year week:(NSInteger)week;

@@ -7,7 +7,7 @@
 //
 
 #import "SB_NomalWeekUserInterface.h"
-
+#import "SB_NomalWeekPublic.h"
 
 #define SB_PickerSection_Numbers 2 //分组个数
 #define SB_PickerFirst_Width self.bounds.size.width/5  //年宽
@@ -30,6 +30,9 @@
     
     NSInteger _selectYear;
     NSInteger _selectWeek;
+    
+    NSInteger _recordWeek;
+    NSInteger _recordYear;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -48,14 +51,14 @@
         self.layer.cornerRadius = 5;
         self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
         [self configurationFuncControl];
-        
+        _recordWeek = [SB_NomalWeekPublic sb_fetchCurrentWeek];
+        _recordYear=  [SB_NomalWeekPublic sb_fetchCurrentYear];
         _pickView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 0, self_width-40, self_height/3*2)];
         _pickView.delegate = self;
         _pickView.dataSource = self;
         _pickView.showsSelectionIndicator = YES;
         [self addSubview:_pickView];
         _datas = [[SB_NomalWeekDataSource shareManager] dataSourceForArray];
-//        [self reloadData];
     }
     return self;
 }
@@ -152,10 +155,18 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if (component == 0) {
-        return _datas.count;
+        
+        return _recordYear-SB_Base_Year+1;
     }
-    NSArray *dataComponents = [_datas objectAtIndex:_selectYear];
-    return dataComponents.count;
+    if (_selectYear+SB_Base_Year < _recordYear) {
+        NSArray *dataComponents = [_datas objectAtIndex:_selectYear];
+        return dataComponents.count;
+    }else if (_selectYear+SB_Base_Year == _recordYear){
+        return _recordWeek;
+    }else{
+        return 0;
+    }
+    
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
@@ -192,7 +203,7 @@
         case 1:
         {
             NSString *date = [[_datas objectAtIndex:_selectYear] objectAtIndex:row];
-            NSString * title = [self outPutTitleFormatWithDate:date index:row];
+            NSString * title = [SB_NomalWeekPublic sb_outPutTitleFormatWithDate:date index:row];
             label.textAlignment = NSTextAlignmentCenter;
             label.text = title;
             label.frame = CGRectMake(0, 0, SB_PickerSecond_Width+30, SB_PickerRow_Height);
@@ -208,8 +219,14 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if (component == 0) {
+        
         if (_selectYear != row) {
             _selectYear = row;
+            NSInteger maxWeeks = ((NSArray *)[_datas objectAtIndex:_selectYear]).count-1;
+            maxWeeks = _selectYear==(_recordYear-SB_Base_Year) ? (_recordWeek-1):maxWeeks;
+            if (_selectWeek>maxWeeks) {
+                _selectWeek = maxWeeks;
+            }
             //刷新周的数据
             [pickerView reloadComponent:1];
         }else{
@@ -217,6 +234,7 @@
         }
         
     }else{
+        
         _selectWeek = row;
     }
     
@@ -237,11 +255,5 @@
     _selectWeek = week;
 }
 #pragma mark  -  private  func
-- (NSString *)outPutTitleFormatWithDate:(NSString *)date index:(NSInteger)index{
-    date = [date stringByReplacingOccurrencesOfString:@" "withString:@"."];
-    NSArray *array = [date componentsSeparatedByString:@"-"];
-    NSString *first = [[array firstObject] substringFromIndex:5];
-    NSString *last = [[array lastObject] substringFromIndex:5];
-    return [NSString stringWithFormat:@"第%ld周(%@-%@)",index+1,first,last];
-}
+
 @end

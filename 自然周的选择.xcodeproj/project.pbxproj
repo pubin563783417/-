@@ -15,7 +15,6 @@
 		176B9A371EF25DDE000A3386 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176B9A351EF25DDE000A3386 /* LaunchScreen.storyboard */; };
 		176B9A421EF25DDE000A3386 /* ______Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A411EF25DDE000A3386 /* ______Tests.m */; };
 		176B9A4D1EF25DDE000A3386 /* ______UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A4C1EF25DDE000A3386 /* ______UITests.m */; };
-		176B9A5B1EF25F4C000A3386 /* date.plist in Resources */ = {isa = PBXBuildFile; fileRef = 176B9A5A1EF25F4C000A3386 /* date.plist */; };
 		176B9A5E1EF2600C000A3386 /* SB_NomalWeekPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A5D1EF2600C000A3386 /* SB_NomalWeekPicker.m */; };
 		176B9A611EF26030000A3386 /* SB_NomalWeekDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A601EF26030000A3386 /* SB_NomalWeekDataSource.m */; };
 		176B9A641EF26056000A3386 /* SB_NomalWeekPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A631EF26056000A3386 /* SB_NomalWeekPublic.m */; };
@@ -28,6 +27,7 @@
 		176B9A7E1EF2C0FC000A3386 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A741EF2C0FC000A3386 /* DTTimePeriodCollection.m */; };
 		176B9A7F1EF2C0FC000A3386 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A761EF2C0FC000A3386 /* DTTimePeriodGroup.m */; };
 		176B9A801EF2C0FC000A3386 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 176B9A781EF2C0FC000A3386 /* NSDate+DateTools.m */; };
+		1781C3F01EF3B5E5007B9EDA /* sb_date.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1781C3EF1EF3B5E5007B9EDA /* sb_date.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,6 @@
 		176B9A481EF25DDE000A3386 /* 自然周的选择UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "自然周的选择UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		176B9A4C1EF25DDE000A3386 /* ______UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "______UITests.m"; sourceTree = "<group>"; };
 		176B9A4E1EF25DDE000A3386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		176B9A5A1EF25F4C000A3386 /* date.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = date.plist; sourceTree = "<group>"; };
 		176B9A5C1EF2600C000A3386 /* SB_NomalWeekPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SB_NomalWeekPicker.h; sourceTree = "<group>"; };
 		176B9A5D1EF2600C000A3386 /* SB_NomalWeekPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SB_NomalWeekPicker.m; sourceTree = "<group>"; };
 		176B9A5F1EF26030000A3386 /* SB_NomalWeekDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SB_NomalWeekDataSource.h; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		176B9A761EF2C0FC000A3386 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodGroup.m; sourceTree = "<group>"; };
 		176B9A771EF2C0FC000A3386 /* NSDate+DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateTools.h"; sourceTree = "<group>"; };
 		176B9A781EF2C0FC000A3386 /* NSDate+DateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateTools.m"; sourceTree = "<group>"; };
+		1781C3EF1EF3B5E5007B9EDA /* sb_date.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sb_date.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +152,7 @@
 				176B9A631EF26056000A3386 /* SB_NomalWeekPublic.m */,
 				176B9A651EF2608D000A3386 /* SB_NomalWeekUserInterface.h */,
 				176B9A661EF2608D000A3386 /* SB_NomalWeekUserInterface.m */,
-				176B9A5A1EF25F4C000A3386 /* date.plist */,
+				1781C3EF1EF3B5E5007B9EDA /* sb_date.plist */,
 				176B9A301EF25DDD000A3386 /* Main.storyboard */,
 				176B9A331EF25DDD000A3386 /* Assets.xcassets */,
 				176B9A351EF25DDE000A3386 /* LaunchScreen.storyboard */,
@@ -318,9 +318,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1781C3F01EF3B5E5007B9EDA /* sb_date.plist in Resources */,
 				176B9A371EF25DDE000A3386 /* LaunchScreen.storyboard in Resources */,
 				176B9A341EF25DDD000A3386 /* Assets.xcassets in Resources */,
-				176B9A5B1EF25F4C000A3386 /* date.plist in Resources */,
 				176B9A321EF25DDD000A3386 /* Main.storyboard in Resources */,
 				176B9A791EF2C0FC000A3386 /* DateTools.bundle in Resources */,
 			);
